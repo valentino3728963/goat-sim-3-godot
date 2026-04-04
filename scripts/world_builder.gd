@@ -50,13 +50,13 @@ func _process(delta: float) -> void:
 	_day_timer += delta
 	if _day_timer > DAY_LENGTH:
 		_day_timer -= DAY_LENGTH
-	var day_frac := _day_timer / DAY_LENGTH
+	var day_frac: float = _day_timer / DAY_LENGTH
 	# Sun sweeps from east (-90°) to west (+90°) through noon (0°)
-	var sun_angle := -90.0 + day_frac * 360.0
+	var sun_angle: float = -90.0 + day_frac * 360.0
 	if _sun:
 		_sun.rotation_degrees.x = sun_angle
 		# Dim at night
-		var brightness := clamp(sin(day_frac * PI * 2.0 - PI * 0.5) * 0.5 + 0.5, 0.05, 1.0)
+		var brightness: float = clamp(sin(day_frac * PI * 2.0 - PI * 0.5) * 0.5 + 0.5, 0.05, 1.0)
 		_sun.light_energy = brightness * 1.80
 
 # ── Environment (sky, sun, fog, glow, SSAO) ───────────────────────────────────
@@ -1493,7 +1493,7 @@ func _spawn_npcs() -> void:
 # ── Player spawning ───────────────────────────────────────────────────────────
 func _spawn_player() -> void:
 	var player_scene := preload("res://scenes/player.tscn")
-	var player       := player_scene.instantiate()
+	var player := player_scene.instantiate() as Node3D
 	player.position  = Vector3(0, 1.5, 0)
 	add_child(player)
 
