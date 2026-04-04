@@ -174,12 +174,12 @@ func _box(p: Node3D, pos: Vector3, sz: Vector3,
 	mi.material_override = _mat(color, rough, metal)
 	p.add_child(mi); return mi
 
-func _cyl(p: Node3D, pos: Vector3, tr: float, br: float, h: float,
+func _cyl(p: Node3D, pos: Vector3, top_r: float, br: float, h: float,
 		color: Color, rough: float, metal: float,
 		rot: Vector3 = Vector3.ZERO) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	var cm := CylinderMesh.new()
-	cm.top_radius = tr; cm.bottom_radius = br
+	cm.top_radius = top_r; cm.bottom_radius = br
 	cm.height = h; cm.radial_segments = 8
 	mi.mesh = cm; mi.position = pos; mi.rotation = rot
 	mi.material_override = _mat(color, rough, metal)
