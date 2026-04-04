@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://g5h6u7d8n9o0"]
+
+[ext_resource type="Script" uid="uid://g5h6s7c8r9d0" path="res://scripts/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 0
+offset_right = 260
+offset_bottom = 100
+theme_override_styles/panel = null
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ScoreRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="Panel/VBox/ScoreRow"]
+layout_mode = 2
+text = "SCORE:"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 1, 0.4, 1)
+
+[node name="ScoreValue" type="Label" parent="Panel/VBox/ScoreRow"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="SpeedRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="Panel/VBox/SpeedRow"]
+layout_mode = 2
+text = "SPEED:"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.7, 0.9, 1.0, 1)
+
+[node name="SpeedValue" type="Label" parent="Panel/VBox/SpeedRow"]
+layout_mode = 2
+text = "0.0 m/s"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="HintLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40
+offset_bottom = 0
+offset_right = 700
+grow_vertical = 0
+text = "🖱 Click window to capture mouse  |  ESC to pause"
+horizontal_alignment = 0
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 1, 0.8, 0.85)
