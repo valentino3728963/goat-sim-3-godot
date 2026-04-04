@@ -41,8 +41,10 @@ func _ready() -> void:
 	_create_explosive_barrels()
 	_create_trampolines()
 	_spawn_npcs()
+	_spawn_drivable_cars()
 	_spawn_player()
 	_spawn_hud()
+	_spawn_map_overlay()
 	_spawn_pause_menu()
 
 func _process(delta: float) -> void:
@@ -1497,10 +1499,47 @@ func _spawn_player() -> void:
 	player.position  = Vector3(0, 1.5, 0)
 	add_child(player)
 
+# ── Drivable cars ─────────────────────────────────────────────────────────────
+func _spawn_drivable_cars() -> void:
+	var car_scene := preload("res://scenes/car.tscn")
+
+	# [pos, type, color]
+	var car_data: Array = [
+		[Vector3(-12, 0.65, -22), "sedan",  Color(0.80, 0.10, 0.10)],
+		[Vector3( 12, 0.65,   8), "sedan",  Color(0.10, 0.30, 0.82)],
+		[Vector3(-22, 0.65,  12), "sports", Color(0.20, 0.80, 0.20)],
+		[Vector3( 22, 0.65,  -8), "sports", Color(0.88, 0.82, 0.18)],
+		[Vector3( 12, 0.65,  22), "truck",  Color(0.50, 0.45, 0.38)],
+		[Vector3(-12, 0.65,  -9), "sedan",  Color(0.82, 0.82, 0.82)],
+		[Vector3( 28, 0.65, -18), "sedan",  Color(0.70, 0.30, 0.75)],
+		[Vector3(-28, 0.65,  18), "sports", Color(0.22, 0.66, 0.88)],
+		[Vector3(  0, 0.65, -26), "truck",  Color(0.44, 0.22, 0.66)],
+		[Vector3(  0, 0.65,  26), "bus",    Color(0.96, 0.82, 0.10)],
+		[Vector3(-34, 0.65,   0), "sedan",  Color(0.88, 0.44, 0.22)],
+		[Vector3( 34, 0.65,   0), "sports", Color(0.20, 0.80, 0.60)],
+	]
+
+	for entry in car_data:
+		var car := car_scene.instantiate() as CharacterBody3D
+		var pos: Vector3 = entry[0]
+		var ctype: String = entry[1]
+		var ccol: Color = entry[2]
+		car.set("car_type",  ctype)
+		car.set("car_color", ccol)
+		car.position = pos
+		add_child(car)
+
 # ── HUD + Pause menu ──────────────────────────────────────────────────────────
 func _spawn_hud() -> void:
 	var hud_scene := preload("res://scenes/hud.tscn")
 	add_child(hud_scene.instantiate())
+
+func _spawn_map_overlay() -> void:
+	var map_script := preload("res://scripts/map_overlay.gd")
+	var map_node := CanvasLayer.new()
+	map_node.name = "MapOverlay"
+	map_node.set_script(map_script)
+	add_child(map_node)
 
 func _spawn_pause_menu() -> void:
 	var pm_scene := preload("res://scenes/pause_menu.tscn")

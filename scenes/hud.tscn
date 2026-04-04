@@ -8,13 +8,13 @@ script = ExtResource("1_hud")
 
 [node name="Panel" type="PanelContainer" parent="."]
 anchors_preset = 0
-offset_right = 260
-offset_bottom = 100
+offset_right = 280
+offset_bottom = 140
 theme_override_styles/panel = null
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 5
 
 [node name="ScoreRow" type="HBoxContainer" parent="Panel/VBox"]
 layout_mode = 2
@@ -37,13 +37,44 @@ layout_mode = 2
 [node name="SpeedLabel" type="Label" parent="Panel/VBox/SpeedRow"]
 layout_mode = 2
 text = "SPEED:"
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(0.7, 0.9, 1.0, 1)
 
 [node name="SpeedValue" type="Label" parent="Panel/VBox/SpeedRow"]
 layout_mode = 2
 text = "0.0 m/s"
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="CarSpeedRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+visible = false
+
+[node name="CarSpeedLabel" type="Label" parent="Panel/VBox/CarSpeedRow"]
+layout_mode = 2
+text = "CAR:"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1.0, 0.8, 0.3, 1)
+
+[node name="CarSpeedValue" type="Label" parent="Panel/VBox/CarSpeedRow"]
+layout_mode = 2
+text = "0 km/h"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="GoatRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="GoatLabel" type="Label" parent="Panel/VBox/GoatRow"]
+layout_mode = 2
+text = "GOAT:"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.6, 1.0, 0.6, 1)
+
+[node name="GoatValue" type="Label" parent="Panel/VBox/GoatRow"]
+layout_mode = 2
+text = "Normal Goat"
+theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="HintLabel" type="Label" parent="."]
@@ -55,7 +86,38 @@ offset_top = -40
 offset_bottom = 0
 offset_right = 700
 grow_vertical = 0
-text = "🖱 Click window to capture mouse  |  ESC to pause"
+text = "Click window to capture mouse  |  ESC to pause"
 horizontal_alignment = 0
 theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(1, 1, 0.8, 0.85)
+
+[node name="EnterHint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 0.85
+anchor_bottom = 0.85
+offset_left = -200
+offset_right = 200
+offset_top = -20
+offset_bottom = 20
+horizontal_alignment = 1
+text = "Press E to Enter Vehicle"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+visible = false
+
+[node name="TipsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300
+offset_top = 10
+offset_right = -10
+offset_bottom = 120
+text = "TAB - Switch Goat\nF - Lick\nM - Map\nE - Enter Car"
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 0.75)
+horizontal_alignment = 2
