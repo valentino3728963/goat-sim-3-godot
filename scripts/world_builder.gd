@@ -247,12 +247,12 @@ func _create_city() -> void:
 			var win_rows := int(h / 3.2)
 			for row in win_rows:
 				var wy := 2.2 + row * 3.2
-				for sign in [-1, 1]:
+				for side in [-1, 1]:
 					var wmi := MeshInstance3D.new()
 					var wm  := BoxMesh.new()
 					wm.size  = Vector3(w - 0.5, 1.5, 0.06)
 					wmi.mesh = wm
-					wmi.position = Vector3(bx, wy, bz + sign * (d * 0.5 + 0.04))
+					wmi.position = Vector3(bx, wy, bz + side * (d * 0.5 + 0.04))
 					wmi.material_override = _mat(
 						Color(0.45, 0.62, 0.88) * _rng.randf_range(0.7, 1.1),
 						0.08, 0.75)

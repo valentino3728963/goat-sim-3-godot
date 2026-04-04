@@ -28,8 +28,8 @@ func update_goat_name(name_str: String) -> void:
 func update_car_speed(spd: float) -> void:
 	car_speed_label.text = "%.0f km/h" % (spd * 3.6)
 
-func show_enter_hint(show: bool) -> void:
-	enter_hint.visible = show
+func show_enter_hint(should_show: bool) -> void:
+	enter_hint.visible = should_show
 
 func set_driving_mode(driving: bool) -> void:
 	speed_row.visible     = not driving
