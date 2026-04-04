@@ -133,7 +133,8 @@ func _build_goat_mesh(parent: Node3D) -> void:
 	var leg_x: Array[float] = [-0.22, 0.22, -0.22, 0.22]
 	var leg_z: Array[float] = [ 0.33,  0.33, -0.33, -0.33]
 	for i in 4:
-		var bx: float = leg_x[i]; var bz: float = leg_z[i]
+		var bx: float = leg_x[i]
+		var bz: float = leg_z[i]
 		_box(parent, Vector3(bx, 0.06, bz + 0.04), Vector3(0.10, 0.60, 0.12), dark, 0.80, 0.00)
 	for sx in [-1, 1]:
 		_box(parent, Vector3(sx * 0.12, 1.86, 0.60) + Vector3(sx * 0.11, 0.28, 0),
@@ -211,9 +212,11 @@ func _go_to_game() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 # ── Mesh helpers ──────────────────────────────────────────────────────────────
-func _mat(color: Color, rough: float, _metal: float) -> StandardMaterial3D:
+func _mat(color: Color, rough: float, metal: float) -> StandardMaterial3D:
 	var m := StandardMaterial3D.new()
-	m.albedo_color = color; m.roughness = rough
+	m.albedo_color = color
+	m.roughness = rough
+	m.metallic = metal
 	return m
 
 func _sbox(parent: Node3D, pos: Vector3, size: Vector3,
