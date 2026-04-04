@@ -76,10 +76,10 @@ func _build_goat_mesh() -> void:
 			0.80, 0.00, Vector3(0, 0, sx * 0.30))
 
 	# Four legs: upper, lower, hoof
-	var leg_x := [-0.22, 0.22, -0.22, 0.22]
-	var leg_z := [ 0.33,  0.33, -0.33, -0.33]
+	var leg_x: Array[float] = [-0.22, 0.22, -0.22, 0.22]
+	var leg_z: Array[float] = [ 0.33,  0.33, -0.33, -0.33]
 	for i in 4:
-		var bx := leg_x[i]; var bz := leg_z[i]
+		var bx: float = leg_x[i]; var bz: float = leg_z[i]
 		_mcyl(goat_root, Vector3(bx, 0.62, bz), 0.08, 0.09, 0.32, tan,  0.80, 0.00)
 		_mcyl(goat_root, Vector3(bx, 0.28, bz), 0.06, 0.07, 0.32, dark, 0.70, 0.00)
 		_mbox(goat_root, Vector3(bx, 0.06, bz + 0.04), Vector3(0.10, 0.08, 0.14), hoof, 1.00, 0.00)

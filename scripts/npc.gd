@@ -44,13 +44,13 @@ func _build_mesh() -> void:
 	var skin_color   := Color(0.92, 0.78, 0.65)
 	var pants_color  := Color(0.22, 0.24, 0.45)
 	var shoe_color   := Color(0.12, 0.10, 0.08)
-	var hair_choices := [
+	var hair_choices: Array[Color] = [
 		Color(0.18, 0.12, 0.06),
 		Color(0.80, 0.70, 0.40),
 		Color(0.55, 0.28, 0.10),
 		Color(0.12, 0.12, 0.12),
 	]
-	var hair_color := hair_choices[randi() % hair_choices.size()]
+	var hair_color: Color = hair_choices[randi() % hair_choices.size()]
 
 	# Lower body / pants
 	_box(_mesh_root, Vector3(0, 0.50, 0),  Vector3(0.36, 0.42, 0.22), pants_color, 0.90, 0.0)
