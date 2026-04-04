@@ -123,13 +123,13 @@ func _build_scene() -> void:
 	_canvas.add_child(skip_lbl)
 
 func _build_goat_mesh(parent: Node3D) -> void:
-	var tan   := Color(0.85, 0.80, 0.68)
-	var dark  := Color(0.40, 0.35, 0.25)
-	var horn  := Color(0.55, 0.48, 0.28)
-	var hoof  := Color(0.15, 0.12, 0.10)
+	var goat_tan := Color(0.85, 0.80, 0.68)
+	var dark     := Color(0.40, 0.35, 0.25)
+	var horn     := Color(0.55, 0.48, 0.28)
+	var _hoof    := Color(0.15, 0.12, 0.10)
 	# Body
-	_box(parent, Vector3(0, 1.00, 0),    Vector3(0.70, 0.45, 1.10), tan,  0.80, 0.00)
-	_box(parent, Vector3(0, 1.56, 0.72), Vector3(0.38, 0.34, 0.44), tan,  0.80, 0.00)
+	_box(parent, Vector3(0, 1.00, 0),    Vector3(0.70, 0.45, 1.10), goat_tan,  0.80, 0.00)
+	_box(parent, Vector3(0, 1.56, 0.72), Vector3(0.38, 0.34, 0.44), goat_tan,  0.80, 0.00)
 	var leg_x: Array[float] = [-0.22, 0.22, -0.22, 0.22]
 	var leg_z: Array[float] = [ 0.33,  0.33, -0.33, -0.33]
 	for i in 4:
