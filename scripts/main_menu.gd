@@ -36,5 +36,5 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		# Transition to game scene
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
+		# Play intro cinematic first, then game
+		get_tree().change_scene_to_file("res://scenes/intro.tscn")
