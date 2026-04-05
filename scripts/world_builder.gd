@@ -70,19 +70,11 @@ func _setup_environment() -> void:
 
 	var env := Environment.new()
 
-	# Procedural sky
-	var sky_mat := ProceduralSkyMaterial.new()
-	sky_mat.sky_top_color     = Color(0.16, 0.44, 0.88)
-	sky_mat.sky_horizon_color = Color(0.72, 0.85, 0.98)
-	sky_mat.ground_horizon_color = Color(0.44, 0.55, 0.32)
-	sky_mat.ground_bottom_color  = Color(0.18, 0.22, 0.08)
-	sky_mat.sun_angle_max     = 30.0
-	var sky := Sky.new()
-	sky.sky_material = sky_mat
-
-	env.sky                   = sky
-	env.background_mode       = Environment.BG_SKY
-	env.ambient_light_source  = Environment.AMBIENT_SOURCE_SKY
+	# Solid colour background (GL Compatibility does not support ProceduralSkyMaterial)
+	env.background_mode       = Environment.BG_COLOR
+	env.background_color      = Color(0.45, 0.65, 0.95)
+	env.ambient_light_source  = Environment.AMBIENT_SOURCE_COLOR
+	env.ambient_light_color   = Color(0.75, 0.80, 0.90)
 	env.ambient_light_energy  = 0.75
 
 	# Fog
@@ -91,7 +83,7 @@ func _setup_environment() -> void:
 	env.fog_aerial_perspective = 0.55
 
 	# Tonemap
-	env.tonemap_mode          = Environment.TONE_MAPPER_ACES
+	env.tonemap_mode          = Environment.TONE_MAPPER_LINEAR
 	env.tonemap_exposure      = 1.05
 
 	# Glow / bloom
