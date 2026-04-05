@@ -6,7 +6,7 @@ const TERRAIN_HALF  := 500.0
 const CITY_HALF     := 38.0
 const GRID_CELLS    := 5       # grid extends from -GRID_CELLS to +GRID_CELLS
 const CELL_SIZE     := 13.0
-const NPC_COUNT     := 35
+const NPC_COUNT     := 10
 
 # District centre offsets
 const RESIDENTIAL_CENTER := Vector3(180, 0, 0)
@@ -86,7 +86,7 @@ func _setup_environment() -> void:
 	env.ambient_light_energy  = 0.75
 
 	# Fog
-	env.fog_enabled           = true
+	env.fog_enabled           = false
 	env.fog_density           = 0.0028
 	env.fog_aerial_perspective = 0.55
 
@@ -95,14 +95,14 @@ func _setup_environment() -> void:
 	env.tonemap_exposure      = 1.05
 
 	# Glow / bloom
-	env.glow_enabled          = true
+	env.glow_enabled          = false
 	env.glow_normalized       = true
 	env.glow_intensity        = 0.50
 	env.glow_bloom            = 0.12
 	env.glow_hdr_threshold    = 1.0
 
 	# SSAO
-	env.ssao_enabled          = true
+	env.ssao_enabled          = false
 	env.ssao_radius           = 1.2
 	env.ssao_intensity        = 2.2
 	env.ssao_power            = 1.5
@@ -116,9 +116,7 @@ func _setup_environment() -> void:
 	sun.rotation_degrees          = Vector3(-48, 42, 0)
 	sun.light_color               = Color(1.00, 0.94, 0.82)
 	sun.light_energy              = 1.80
-	sun.shadow_enabled            = true
-	sun.directional_shadow_mode   = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
-	sun.directional_shadow_max_distance = 400.0
+	sun.shadow_enabled            = false
 	_sun = sun
 
 # ── Ground / terrain ──────────────────────────────────────────────────────────
@@ -128,8 +126,8 @@ func _create_terrain() -> void:
 	# Large grass plane (uses subdivided mesh for visual variety)
 	var terrain_mesh := PlaneMesh.new()
 	terrain_mesh.size = Vector2(TERRAIN_HALF * 2, TERRAIN_HALF * 2)
-	terrain_mesh.subdivide_width  = 64
-	terrain_mesh.subdivide_depth  = 64
+	terrain_mesh.subdivide_width  = 8
+	terrain_mesh.subdivide_depth  = 8
 	_plain_mesh(root, Vector3(0, -0.5, 0), terrain_mesh,
 		_mat(Color(0.26, 0.50, 0.17), 0.95, 0.0))
 	# Collision for grass plane
@@ -340,8 +338,8 @@ func _create_beach() -> void:
 	water.name = "Water"
 	var pm := PlaneMesh.new()
 	pm.size = Vector2(90, 90)
-	pm.subdivide_width  = 32
-	pm.subdivide_depth  = 32
+	pm.subdivide_width  = 4
+	pm.subdivide_depth  = 4
 	water.mesh = pm
 	water.position = Vector3(130, -0.45, 0)
 
@@ -397,12 +395,12 @@ func _create_trees() -> void:
 			Vector3( CITY_HALF + 2, 0, t),
 		])
 	# Random scatter in mid zone
-	for _i in 60:
+	for _i in 15:
 		var a   := _rng.randf() * TAU
 		var d   := _rng.randf_range(50.0, 130.0)
 		positions.append(Vector3(cos(a) * d, 0, sin(a) * d))
 	# Scatter in far zones
-	for _i in 40:
+	for _i in 10:
 		var a   := _rng.randf() * TAU
 		var d   := _rng.randf_range(130.0, 300.0)
 		positions.append(Vector3(cos(a) * d, 0, sin(a) * d))
